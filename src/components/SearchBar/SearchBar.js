@@ -24,7 +24,7 @@ class SearchBar extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             id="searchQuery"
-            type="text"
+            type="search"
             size="50"
             placeholder="Search for books by Title or Author..."
             value={this.props.searchQuery}
