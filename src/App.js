@@ -21,21 +21,23 @@ class App extends Component {
 
   handleQuerySubmit() {
     // TODO add &startIndex= to query string to support paginating results
-    let baseURL =
-      "https://www.googleapis.com/books/v1/volumes?maxResults=40&q=";
+    if (this.state.searchQuery !== "") {
+      let baseURL =
+        "https://www.googleapis.com/books/v1/volumes?maxResults=40&q=";
 
-    // get volume info from API
-    fetch(baseURL + this.state.searchQuery)
-      .then(response => {
-        response.json().then(data => {
-          // save volume info to state
-          this.setState({ books: data.items });
-          console.log(data.items);
+      // get volume info from API
+      fetch(baseURL + this.state.searchQuery)
+        .then(response => {
+          response.json().then(data => {
+            // save volume info to state
+            this.setState({ books: data.items });
+            console.log(data.items);
+          });
+        })
+        .catch(function(err) {
+          console.log("Fetch Error", err);
         });
-      })
-      .catch(function(err) {
-        console.log("Fetch Error", err);
-      });
+    }
     console.log("searchQuery = " + this.state.searchQuery);
   }
 
@@ -48,7 +50,10 @@ class App extends Component {
           handleQueryChange={this.handleQueryChange}
           handleQuerySubmit={this.handleQuerySubmit}
         />
-        <BookResults books={this.state.books} />
+        <BookResults
+          searchQuery={this.state.searchQuery}
+          books={this.state.books}
+        />
       </div>
     );
   }
