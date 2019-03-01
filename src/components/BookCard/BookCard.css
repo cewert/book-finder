@@ -24,11 +24,10 @@
 .bookCard .button {
   background-color: #15cf89;
   color: white;
-  padding: 0.4em 0.8em;
+  padding: 0.5em;
   text-decoration: none;
   display: inline-block;
   border-radius: 0.5em;
-  width: 5em;
 }
 
 .bookCard .button:hover,
