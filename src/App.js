@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       searchQuery: "",
+      results: false,
       books: []
     };
 
@@ -30,7 +31,7 @@ class App extends Component {
         .then(response => {
           response.json().then(data => {
             // save volume info to state
-            this.setState({ books: data.items });
+            this.setState({ books: data.items, results: true });
             console.log(data.items);
           });
         })
@@ -53,6 +54,7 @@ class App extends Component {
         <BookResults
           searchQuery={this.state.searchQuery}
           books={this.state.books}
+          results={this.state.results}
         />
       </div>
     );
